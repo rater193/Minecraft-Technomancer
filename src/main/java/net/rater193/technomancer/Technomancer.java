@@ -43,6 +43,7 @@ public class Technomancer
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             // Some client setup code
+            //test
         }
     }
 }
