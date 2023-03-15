@@ -22,19 +22,23 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, Technomancer.MOD_ID);
 
+    ///////////////////////////////////////////////////////////////////////////////
+    //                                  BLOCKS                                   //
+    ///////////////////////////////////////////////////////////////////////////////
+
     public static final RegistryObject<Block> THERMAL_PASTE_ORE = registerBlock("thermalpaste_ore",
             () -> new DropExperienceBlock(
-                    BlockBehaviour.Properties.of(Material.CLAY)
-                            .strength(6f).requiresCorrectToolForDrops(),
-                    UniformInt.of(3,7)
+                    BlockBehaviour.Properties.of(Material.STONE)
+                            .strength(2f)
+                            .requiresCorrectToolForDrops()
             ),
             ModCreativeModeTab.CREATIVE_MODE_TAB
     );
     public static final RegistryObject<Block> THERMAL_PASTE_DEEPSLATE_ORE = registerBlock("thermalpaste_deepslate_ore",
-            () -> new DropExperienceBlock(
-                    BlockBehaviour.Properties.of(Material.CLAY)
-                            .strength(6f).requiresCorrectToolForDrops(),
-                    UniformInt.of(3,7)
+            () -> new Block(
+                    BlockBehaviour.Properties.of(Material.STONE)
+                            .strength(2f)
+                            .requiresCorrectToolForDrops()
             ),
             ModCreativeModeTab.CREATIVE_MODE_TAB
     );
@@ -53,6 +57,11 @@ public class ModBlocks {
             ),
             ModCreativeModeTab.CREATIVE_MODE_TAB
     );
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //                                  METHODS                                  //
+    ///////////////////////////////////////////////////////////////////////////////
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
         RegistryObject<T> returnBlock = BLOCKS.register(name, block);

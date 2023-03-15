@@ -17,13 +17,11 @@ public class ModItems {
             () -> new Item(
                     new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
                             .stacksTo(8)
-                            .rarity(Rarity.COMMON)
             ));
     public static final RegistryObject<Item> RAWTHERMALPASTE = ITEMS.register("thermalpaste_raw",
             () -> new Item(
                     new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
                             .stacksTo(8)
-                            .rarity(Rarity.COMMON)
             ));
 
     public static void register(IEventBus eventBus) {
