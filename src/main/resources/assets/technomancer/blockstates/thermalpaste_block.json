@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "technomancer:block/thermalpaste_block" }
+  }
+}

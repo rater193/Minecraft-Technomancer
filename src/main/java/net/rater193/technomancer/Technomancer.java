@@ -1,7 +1,5 @@
 package net.rater193.technomancer;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -9,7 +7,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.rater193.technomancer.block.ModBlocks;
+import net.rater193.technomancer.item.ModItems;
 
 // The value here should match an entry in the META-INF/mods.toml file
 // CTRL + F6 LETS YOU SAFELY RENAME FILES, VARIABLES, AND REFERENCES
@@ -22,6 +21,10 @@ public class Technomancer
     public Technomancer()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        // Reggistering our items/blocks
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

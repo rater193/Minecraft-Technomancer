@@ -1,0 +1,11 @@
+{
+  "item.technomancer.thermalpaste_raw": "Raw Thermal Paste",
+  "item.technomancer.thermalpaste": "Thermal Paste",
+
+  "block.technomancer.thermalpaste_ore": "Thermal Paste Ore",
+  "block.technomancer.thermalpaste_deepslate_ore": "Deepslate Thermal Paste Ore",
+  "block.technomancer.thermalpaste_raw_block": "Raw Thermal Paste Block",
+  "block.technomancer.thermalpaste_block": "Thermal Paste Block",
+
+  "itemGroup.technomancer_creative_tab": "Technomancer"
+}
