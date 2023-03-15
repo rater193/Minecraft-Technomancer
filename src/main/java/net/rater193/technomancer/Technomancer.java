@@ -21,7 +21,6 @@ public class Technomancer
     public Technomancer()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
         // Reggistering our items/blocks
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
