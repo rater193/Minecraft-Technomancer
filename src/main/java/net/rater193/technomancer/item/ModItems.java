@@ -16,12 +16,12 @@ public class ModItems {
     public static final RegistryObject<Item> THERMALPASTE = ITEMS.register("thermalpaste",
             () -> new Item(
                     new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
-                            .stacksTo(8)
+                            .stacksTo(64)
             ));
     public static final RegistryObject<Item> RAWTHERMALPASTE = ITEMS.register("thermalpaste_raw",
             () -> new Item(
                     new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
-                            .stacksTo(8)
+                            .stacksTo(64)
             ));
 
     public static void register(IEventBus eventBus) {

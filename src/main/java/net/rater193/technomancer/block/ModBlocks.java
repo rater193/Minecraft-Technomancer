@@ -31,18 +31,19 @@ public class ModBlocks {
                     BlockBehaviour.Properties.of(Material.STONE)
                             .strength(2f)
                             .requiresCorrectToolForDrops()
+                    , UniformInt.of(1,4)
             ),
             ModCreativeModeTab.CREATIVE_MODE_TAB
     );
     public static final RegistryObject<Block> THERMAL_PASTE_DEEPSLATE_ORE = registerBlock("thermalpaste_deepslate_ore",
-            () -> new Block(
+            () -> new DropExperienceBlock(
                     BlockBehaviour.Properties.of(Material.STONE)
                             .strength(2f)
                             .requiresCorrectToolForDrops()
+                    , UniformInt.of(1,4)
             ),
             ModCreativeModeTab.CREATIVE_MODE_TAB
     );
-
     public static final RegistryObject<Block> THERMAL_PASTE_RAW_BLOCK = registerBlock("thermalpaste_raw_block",
             () -> new Block(
                     BlockBehaviour.Properties.of(Material.CLAY)

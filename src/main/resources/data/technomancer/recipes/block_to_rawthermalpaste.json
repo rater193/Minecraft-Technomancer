@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "technomancer:thermalpaste_raw_block"
+    }
+  },
+  "result": {
+    "item": "technomancer:thermalpaste_raw",
+    "count": 9
+  }
+}
