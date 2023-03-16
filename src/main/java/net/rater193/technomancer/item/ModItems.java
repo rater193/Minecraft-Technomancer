@@ -7,6 +7,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.rater193.technomancer.item.custom.ItemThermalPasteTube;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -22,6 +23,16 @@ public class ModItems {
             () -> new Item(
                     new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
                             .stacksTo(64)
+            ));
+    public static final RegistryObject<Item> THERMALPASTE_TUBE = ITEMS.register("thermalpaste_tube",
+            () -> new Item(
+                    new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
+                            .stacksTo(16)
+            ));
+    public static final RegistryObject<Item> THERMALPASTE_TUBE_FULL = ITEMS.register("thermalpaste_tube_full",
+            () -> new ItemThermalPasteTube(
+                    new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
+                            .stacksTo(1)
             ));
 
     public static void register(IEventBus eventBus) {

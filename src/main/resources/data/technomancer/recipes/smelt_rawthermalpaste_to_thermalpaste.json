@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 400,
+  "experience": 0.7,
+  "group": "thermalpaste",
+  "ingredient": {
+    "item": "technomancer:thermalpaste_raw"
+  },
+  "result": "technomancer:thermalpaste"
+}

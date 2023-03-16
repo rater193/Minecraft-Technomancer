@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    " # ",
+    "A  "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:glass"
+    },
+    "A": {
+      "item": "technomancer:thermalpaste"
+    }
+  },
+  "result": {
+    "item": "technomancer:thermalpaste_tube_full",
+    "count": 1
+  }
+}

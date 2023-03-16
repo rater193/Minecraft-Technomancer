@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "thermalpaste_tube",
+  "ingredients": [
+    {
+      "item": "technomancer:thermalpaste_tube"
+    },
+    {
+      "item": "technomancer:thermalpaste"
+    }
+  ],
+  "result": {
+    "item": "technomancer:thermalpaste_tube_full"
+  }
+}
