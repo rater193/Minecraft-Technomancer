@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "lit=true": { "model": "technomancer:block/clicklight_white_on" },
+    "lit=false": { "model": "technomancer:block/clicklight_white_off" }
+  }
+}

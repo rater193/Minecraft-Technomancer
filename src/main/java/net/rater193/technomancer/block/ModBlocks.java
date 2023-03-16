@@ -13,6 +13,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rater193.technomancer.Technomancer;
+import net.rater193.technomancer.block.custom.BlockClickLight;
 import net.rater193.technomancer.item.ModCreativeModeTab;
 import net.rater193.technomancer.item.ModItems;
 
@@ -55,6 +56,18 @@ public class ModBlocks {
             () -> new Block(
                     BlockBehaviour.Properties.of(Material.CLAY)
                             .strength(6f).requiresCorrectToolForDrops()
+            ),
+            ModCreativeModeTab.CREATIVE_MODE_TAB
+    );
+    public static final RegistryObject<Block> CLICKLIGHT_LIGHT = registerBlock("clicklight_white",
+            () -> new BlockClickLight(
+                    BlockBehaviour.Properties.of(Material.CLAY)
+                            .strength(6f).requiresCorrectToolForDrops()
+                            .lightLevel(
+                                    state ->
+                                    (state.getValue(BlockClickLight.LIT) ? 15 : 0)
+
+                            )
             ),
             ModCreativeModeTab.CREATIVE_MODE_TAB
     );

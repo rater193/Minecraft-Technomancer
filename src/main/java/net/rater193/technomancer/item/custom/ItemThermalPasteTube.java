@@ -16,23 +16,31 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.rater193.technomancer.item.ModItems;
+import net.rater193.technomancer.utility.WorldUtil;
 
-public class ItemThermalPasteTube extends Item {
+public class ItemThermalPasteTube extends ItemTooltipHelper {
 
     public ItemThermalPasteTube(Properties properties) {
-        super(properties);
+        super(properties, "This item lets you cool down \nelectronics, keeping them \nfrom overheating.");
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if(!level.isClientSide() && hand==InteractionHand.MAIN_HAND) {
             //Spits out thermal paste, swaps this item with an empty tube
-
             //outputNumber(player);
-            player.setItemInHand(hand, new ItemStack(ModItems.THERMALPASTE_TUBE.get()));
-            Vec3 pos = player.getEyePosition().add(player.getLookAngle().multiply(new Vec3(1d,1d,1d)));
+            if(!player.isCreative()) {
+                //Only remove the item from the players hand if they are not in creative
+                player.setItemInHand(hand, new ItemStack(ModItems.THERMALPASTE_TUBE.get()));
+            }
 
-            new ItemEntity(level,pos.x(), pos.y(), pos.z(), new ItemStack(ModItems.THERMALPASTE.get())).spawnAtLocation(ModItems.THERMALPASTE.get());
+            //Spawning thermalpaste in the world
+            Vec3 pos = player.getEyePosition().add(player.getLookAngle().multiply(
+                    new Vec3(1d,1d,1d)
+            ));
+
+            //Cleaned up the reference code, and moved it to a custom clas to keep the clutter away from code
+            WorldUtil.SpawnInWorld(level, pos, ModItems.THERMALPASTE.get());
         }
 
         return super.use(level, player, hand);
