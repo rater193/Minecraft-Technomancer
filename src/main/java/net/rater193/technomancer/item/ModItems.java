@@ -18,20 +18,17 @@ public class ModItems {
     public static final RegistryObject<Item> THERMALPASTE = ITEMS.register("thermalpaste",
             () -> new ItemTooltipHelper(
                     new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
-                            .stacksTo(64),
-                    "Craft with an empty tube to \ncreate a full tube of thermal \npaste."
+                            .stacksTo(64)
             ));
     public static final RegistryObject<Item> RAWTHERMALPASTE = ITEMS.register("thermalpaste_raw",
             () -> new ItemTooltipHelper(
                     new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
-                            .stacksTo(64),
-                    "Smelt the raw thermal paste \nin order to get thermal paste."
+                            .stacksTo(64)
             ));
     public static final RegistryObject<Item> THERMALPASTE_TUBE = ITEMS.register("thermalpaste_tube",
             () -> new ItemTooltipHelper(
                     new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
-                            .stacksTo(16),
-                    "Allthough empty, this was once \nused to make machines cool down. \nCraft it with thermal paste to \nmake a full tube."
+                            .stacksTo(16)
             ));
     public static final RegistryObject<Item> THERMALPASTE_TUBE_FULL = ITEMS.register("thermalpaste_tube_full",
             () -> new ItemThermalPasteTube(

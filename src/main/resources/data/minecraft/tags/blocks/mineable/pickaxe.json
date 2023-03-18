@@ -5,6 +5,7 @@
     "technomancer:thermalpaste_deepslate_ore",
     "technomancer:thermalpaste_raw_block",
     "technomancer:thermalpaste_block",
-    "technomancer:clickblock_white"
+    "technomancer:machineblock",
+    "technomancer:clicklight_white"
   ]
 }

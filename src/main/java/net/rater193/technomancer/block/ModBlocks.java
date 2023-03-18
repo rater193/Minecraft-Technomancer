@@ -16,6 +16,7 @@ import net.rater193.technomancer.Technomancer;
 import net.rater193.technomancer.block.custom.BlockClickLight;
 import net.rater193.technomancer.item.ModCreativeModeTab;
 import net.rater193.technomancer.item.ModItems;
+import net.rater193.technomancer.item.custom.BlockItemTooltipHelper;
 
 import java.util.function.Supplier;
 
@@ -27,38 +28,11 @@ public class ModBlocks {
     //                                  BLOCKS                                   //
     ///////////////////////////////////////////////////////////////////////////////
 
-    public static final RegistryObject<Block> THERMAL_PASTE_ORE = registerBlock("thermalpaste_ore",
-            () -> new DropExperienceBlock(
-                    BlockBehaviour.Properties.of(Material.STONE)
-                            .strength(2f)
-                            .requiresCorrectToolForDrops()
-                    , UniformInt.of(1,4)
-            ),
-            ModCreativeModeTab.CREATIVE_MODE_TAB
-    );
-    public static final RegistryObject<Block> THERMAL_PASTE_DEEPSLATE_ORE = registerBlock("thermalpaste_deepslate_ore",
-            () -> new DropExperienceBlock(
-                    BlockBehaviour.Properties.of(Material.STONE)
-                            .strength(2f)
-                            .requiresCorrectToolForDrops()
-                    , UniformInt.of(1,4)
-            ),
-            ModCreativeModeTab.CREATIVE_MODE_TAB
-    );
-    public static final RegistryObject<Block> THERMAL_PASTE_RAW_BLOCK = registerBlock("thermalpaste_raw_block",
-            () -> new Block(
-                    BlockBehaviour.Properties.of(Material.CLAY)
-                            .strength(6f).requiresCorrectToolForDrops()
-            ),
-            ModCreativeModeTab.CREATIVE_MODE_TAB
-    );
-    public static final RegistryObject<Block> THERMAL_PASTE_BLOCK = registerBlock("thermalpaste_block",
-            () -> new Block(
-                    BlockBehaviour.Properties.of(Material.CLAY)
-                            .strength(6f).requiresCorrectToolForDrops()
-            ),
-            ModCreativeModeTab.CREATIVE_MODE_TAB
-    );
+    public static final RegistryObject<Block> THERMAL_PASTE_ORE = registerBasicBlock("thermalpaste_ore", Material.STONE);
+    public static final RegistryObject<Block> THERMAL_PASTE_DEEPSLATE_ORE = registerBasicBlock("thermalpaste_deepslate_ore", Material.STONE);
+    public static final RegistryObject<Block> THERMAL_PASTE_RAW_BLOCK = registerBasicBlock("thermalpaste_raw_block", Material.CLAY);
+    public static final RegistryObject<Block> THERMAL_PASTE_BLOCK = registerBasicBlock("thermalpaste_block", Material.CLAY);
+    public static final RegistryObject<Block> MACHINE_BLOCK = registerBasicBlock("machineblock", Material.HEAVY_METAL);
     public static final RegistryObject<Block> CLICKLIGHT_LIGHT = registerBlock("clicklight_white",
             () -> new BlockClickLight(
                     BlockBehaviour.Properties.of(Material.CLAY)
@@ -84,8 +58,21 @@ public class ModBlocks {
         return returnBlock;
     }
 
+    private static RegistryObject<Block> registerBasicBlock(String name, Material material) {
+        Supplier<Block> block = () -> new Block(
+                BlockBehaviour.Properties.of(material)
+                        .strength(6f)
+                        .requiresCorrectToolForDrops()
+        );
+
+        return registerBlock(name,
+                block,
+                ModCreativeModeTab.CREATIVE_MODE_TAB
+        );
+    }
+
     private static <T extends Block>RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
-        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
+        return ModItems.ITEMS.register(name, () -> new BlockItemTooltipHelper(block.get(), new Item.Properties().tab(tab)));
     }
 
     public static void register(IEventBus eventBus) {
