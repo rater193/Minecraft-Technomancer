@@ -15,26 +15,18 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, Technomancer.MOD_ID);
 
     //Creating our items
-    public static final RegistryObject<Item> THERMALPASTE = ITEMS.register("thermalpaste",
-            () -> new ItemTooltipHelper(
-                    new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
-                            .stacksTo(64)
-            ));
-    public static final RegistryObject<Item> RAWTHERMALPASTE = ITEMS.register("thermalpaste_raw",
-            () -> new ItemTooltipHelper(
-                    new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
-                            .stacksTo(64)
-            ));
-    public static final RegistryObject<Item> THERMALPASTE_TUBE = ITEMS.register("thermalpaste_tube",
-            () -> new ItemTooltipHelper(
-                    new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
-                            .stacksTo(16)
-            ));
-    public static final RegistryObject<Item> THERMALPASTE_TUBE_FULL = ITEMS.register("thermalpaste_tube_full",
-            () -> new ItemThermalPasteTube(
-                    new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
-                            .stacksTo(1)
-            ));
+    public static final RegistryObject<Item> THERMALPASTE = registerItem("thermalpaste", 64);
+    public static final RegistryObject<Item> RAWTHERMALPASTE = registerItem("thermalpaste_raw", 64);
+    public static final RegistryObject<Item> THERMALPASTE_TUBE = registerItem("thermalpaste_tube", 16);
+    public static final RegistryObject<Item> THERMALPASTE_TUBE_FULL = registerItem("thermalpaste_tube_full", 1);
+
+    public static RegistryObject<Item> registerItem(String itemName, int maxStackSize) {
+        return ITEMS.register(itemName,
+                () -> new ItemThermalPasteTube(
+                        new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
+                                .stacksTo(maxStackSize)
+                ));
+    }
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
