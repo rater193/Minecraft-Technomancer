@@ -21,7 +21,7 @@ import net.rater193.technomancer.utility.WorldUtil;
 public class ItemThermalPasteTube extends ItemTooltipHelper {
 
     public ItemThermalPasteTube(Properties properties) {
-        super(properties, "This item lets you cool down \nelectronics, keeping them \nfrom overheating.");
+        super(properties);
     }
 
     @Override

@@ -17,12 +17,17 @@ public class ModItems {
     //Creating our items
     public static final RegistryObject<Item> THERMALPASTE = registerItem("thermalpaste", 64);
     public static final RegistryObject<Item> RAWTHERMALPASTE = registerItem("thermalpaste_raw", 64);
+    public static final RegistryObject<Item> PRODECK_BETA = registerItem("prodeck", 1);
     public static final RegistryObject<Item> THERMALPASTE_TUBE = registerItem("thermalpaste_tube", 16);
-    public static final RegistryObject<Item> THERMALPASTE_TUBE_FULL = registerItem("thermalpaste_tube_full", 1);
+    public static final RegistryObject<Item> THERMALPASTE_TUBE_FULL = ITEMS.register("thermalpaste_tube_full",
+            () -> new ItemThermalPasteTube(
+                    new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
+                            .stacksTo(1)
+            ));
 
     public static RegistryObject<Item> registerItem(String itemName, int maxStackSize) {
         return ITEMS.register(itemName,
-                () -> new ItemThermalPasteTube(
+                () -> new ItemTooltipHelper(
                         new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)
                                 .stacksTo(maxStackSize)
                 ));
