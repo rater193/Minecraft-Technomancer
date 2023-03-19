@@ -4,9 +4,9 @@
 
   "tooltip.pressshiftformoreinfo": "[Press shift for more information]",
 
-  "Comment": "=============================================================================================================",
-  "Comment": "==                                                  BLOCKS                                                 ==",
-  "Comment": "=============================================================================================================",
+  "Comment": "========================================================================================================",
+  "Comment": "==                                               BLOCKS                                               ==",
+  "Comment": "========================================================================================================",
 
   "block.technomancer.thermalpaste_ore": "Thermal Paste Ore",
   "tooltip.block.thermalpaste_ore": "This block drops between 1, and 4 thermal paste. Found anywhere in the overworld, in stone patches.",
@@ -26,9 +26,9 @@
   "block.technomancer.clicklight_white": "White Clicklight",
   "tooltip.block.clicklight_white": "A toggleable light with either redstone, or by rightclicking it. This is an asthetic tweak for people who need it.",
 
-  "Comment": "=============================================================================================================",
-  "Comment": "==                                                  ITEMS                                                  ==",
-  "Comment": "=============================================================================================================",
+  "Comment": "========================================================================================================",
+  "Comment": "==                                                ITEMS                                               ==",
+  "Comment": "========================================================================================================",
 
   "item.technomancer.thermalpaste_tube": "Thermal Paste Tube (EMPTY)",
   "tooltip.item.thermalpaste_tube": "Allthough empty, this was once used to make machines cool down. Craft it with thermal paste to make a full tube.",
