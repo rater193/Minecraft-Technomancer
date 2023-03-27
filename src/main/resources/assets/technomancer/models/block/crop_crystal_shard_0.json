@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "technomancer:block/crop_crystal_shard_0"
+  }
+}

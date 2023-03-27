@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "technomancer:block/crop_crystal_shard_0"
+    },
+    "age=1": {
+      "model": "technomancer:block/crop_crystal_shard_1"
+    },
+    "age=2": {
+      "model": "technomancer:block/crop_crystal_shard_2"
+    },
+    "age=3": {
+      "model": "technomancer:block/crop_crystal_shard_3"
+    },
+    "age=4": {
+      "model": "technomancer:block/crop_crystal_shard_4"
+    },
+    "age=5": {
+      "model": "technomancer:block/crop_crystal_shard_5"
+    },
+    "age=6": {
+      "model": "technomancer:block/crop_crystal_shard_6"
+    }
+  }
+}

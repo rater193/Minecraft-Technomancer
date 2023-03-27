@@ -26,6 +26,9 @@
   "block.technomancer.clicklight_white": "White Clicklight",
   "tooltip.block.clicklight_white": "A toggleable light with either redstone, or by rightclicking it. This is an asthetic tweak for people who need it.",
 
+  "block.technomancer.crop_crystal_shard": "Crystal Seeds",
+  "tooltip.block.crop_crystal_shard": "Used to grow Crystal Shards.",
+
   "Comment": "========================================================================================================",
   "Comment": "==                                                ITEMS                                               ==",
   "Comment": "========================================================================================================",
@@ -33,8 +36,14 @@
   "item.technomancer.thermalpaste_tube": "Thermal Paste Tube (EMPTY)",
   "tooltip.item.thermalpaste_tube": "Allthough empty, this was once used to make machines cool down. Craft it with thermal paste to make a full tube.",
 
-  "item.technomancer.thermalpaste_tube_full": "Thermal Paste Tube (FULL)",
-  "tooltip.item.thermalpaste_tube_full": "this is used to make machines cool down.",
+  "item.technomancer.thermalpaste_tube": "Thermal Paste Tube (EMPTY)",
+  "tooltip.item.thermalpaste_tube": "Allthough empty, this was once used to make machines cool down. Craft it with thermal paste to make a full tube.",
+
+  "item.technomancer.crop_crystal_shard": "Crystal Shard",
+  "tooltip.item.crop_crystal_shard": "Craft this in 3x3 to obtain a crystal catalyst, to grow more crystals.",
+
+  "item.technomancer.crop_crystal_shard_seeds": "Crystal Shard Seeds",
+  "tooltip.item.crop_crystal_shard_seeds": "Used to grow Crystal Shards.",
 
   "item.technomancer.thermalpaste_raw": "Raw Thermal Paste",
   "tooltip.item.thermalpaste_raw": "Smelt the raw thermal paste in order to get thermal paste.",

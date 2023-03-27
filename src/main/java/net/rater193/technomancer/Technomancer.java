@@ -1,5 +1,7 @@
 package net.rater193.technomancer;
 
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -46,6 +48,7 @@ public class Technomancer
         {
             // Some client setup code
             //test
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.BLOCKCROPCRYSTALSHARD.get(), RenderType.cutout());
         }
     }
 }
