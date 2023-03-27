@@ -11,6 +11,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.rater193.technomancer.block.ModBlocks;
 import net.rater193.technomancer.item.ModItems;
+import net.rater193.technomancer.villager.ModVillagers;
 
 // The value here should match an entry in the META-INF/mods.toml file
 // CTRL + F6 LETS YOU SAFELY RENAME FILES, VARIABLES, AND REFERENCES
@@ -27,6 +28,9 @@ public class Technomancer
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
+        //Registering villagers
+        ModVillagers.register(modEventBus);
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -37,6 +41,9 @@ public class Technomancer
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         // Some common setup code
+        event.enqueueWork(() -> {
+            ModVillagers.registerPOIs();
+        });
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
