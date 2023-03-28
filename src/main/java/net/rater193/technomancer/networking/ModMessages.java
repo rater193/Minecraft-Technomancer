@@ -32,26 +32,20 @@ public class ModMessages {
 
         INSTANCE = net;
 
-        new PacketClient(net, NewNetID());
+        //Client messages
         new PacketC2STestInheritence(net, NewNetID());
+        new PacketC2SDefragRam(net, NewNetID());
+        new PacketC2STestMessage(net, NewNetID());
 
-        net.messageBuilder(PacketC2STestMessage.class, NewNetID(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(PacketC2STestMessage::new)
-                .encoder(PacketC2STestMessage::toBytes)
-                .consumerMainThread(PacketC2STestMessage::handle)
-                .add();
+        //Server messages
+        new PacketS2CSyncRamData(net, NewNetID());
 
-        net.messageBuilder(PacketC2SDefragRam.class, NewNetID(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(PacketC2SDefragRam::new)
-                .encoder(PacketC2SDefragRam::toBytes)
-                .consumerMainThread(PacketC2SDefragRam::handle)
-                .add();
-
+        /*
         net.messageBuilder(PacketS2CSyncRamData.class, NewNetID(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(PacketS2CSyncRamData::new)
                 .encoder(PacketS2CSyncRamData::toBytes)
                 .consumerMainThread(PacketS2CSyncRamData::handle)
-                .add();
+                .add();*/
     }
 
     public static <MSG> void sendToServer(MSG message) {

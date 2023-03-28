@@ -47,8 +47,8 @@ public class PacketClient extends PacketShared {
     }
 
     @Override
-    public void onSharedSend(NetworkEvent.Context context, Supplier<NetworkEvent.Context> supplier) {
-        super.onSharedSend(context, supplier);
+    public void onSharedSend() {
+        super.onSharedSend();
         onClientSend();
     }
 

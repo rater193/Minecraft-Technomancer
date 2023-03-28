@@ -6,32 +6,21 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.network.simple.SimpleChannel;
 
 import java.util.function.Supplier;
 
-public class PacketC2STestMessage {
+public class PacketC2STestMessage extends PacketClient {
+    public PacketC2STestMessage(SimpleChannel channel, int messageID) {
+        super(channel, messageID);
+    }
     public PacketC2STestMessage() {
-
+        super();
     }
 
-    public PacketC2STestMessage(FriendlyByteBuf buf) {
-
-    }
-
-    public void toBytes(FriendlyByteBuf buf) {
-
-    }
-
-    public boolean handle(Supplier<NetworkEvent.Context> supplier) {
-        NetworkEvent.Context context = supplier.get();
-        context.enqueueWork(() ->  {
-            //This logic is handled on the server
-            ServerPlayer sender = context.getSender();
-            ServerLevel level = sender.getLevel();
-
-            EntityType.COW.spawn(level, null, null, sender.blockPosition(), MobSpawnType.COMMAND, true, false);
-
-        });
-        return true;
+    @Override
+    public void onServerReceive(ServerPlayer sender, ServerLevel level, Supplier<NetworkEvent.Context> supplier) {
+        super.onServerReceive(sender, level, supplier);
+        EntityType.COW.spawn(level, null, null, sender.blockPosition(), MobSpawnType.COMMAND, true, false);
     }
 }

@@ -1,17 +1,9 @@
 package net.rater193.technomancer.networking.packets.shared;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraftforge.network.NetworkEvent;
-import net.rater193.technomancer.networking.ModMessages;
-import net.rater193.technomancer.networking.packets.server.PacketS2CSyncRamData;
-import net.rater193.technomancer.playerdata.ram.PlayerRamProvider;
-import net.rater193.technomancer.utility.ModLangs;
 
 import java.util.function.Supplier;
 
@@ -53,15 +45,20 @@ public class PacketShared {
 
         //Method execution to help the API work better
         //Executed from the sender
-        onSharedSend(context, supplier);
+        ServerPlayer sender1 = context.getSender();
+        ServerLevel level1 = sender1.getLevel();
+
+        onSharedSend();
+        onSharedSend(sender1, level1, context, supplier);
 
         context.enqueueWork(() ->  {
-            ServerPlayer sender = context.getSender();
-            ServerLevel level = sender.getLevel();
 
+            ServerPlayer sender2 = context.getSender();
+            ServerLevel level2 = sender2.getLevel();
             //Method execution to help the API work better
             //Executed on the target
-            onSharedInvoke(sender, level, supplier);
+            onSharedInvoke(sender2, level2, supplier);
+            onSharedInvoke();
         });
         return true;
     }
@@ -70,8 +67,12 @@ public class PacketShared {
     //                       VIRTUAL/OVERRIDES                        //
     ////////////////////////////////////////////////////////////////////
 
-    public void onSharedSend(NetworkEvent.Context context, Supplier<NetworkEvent.Context> supplier) { }
+    public void onSharedSend() { }
+
+    public void onSharedSend(ServerPlayer sender, ServerLevel level, NetworkEvent.Context context, Supplier<NetworkEvent.Context> supplier) { }
 
     public void onSharedInvoke(ServerPlayer sender, ServerLevel level, Supplier<NetworkEvent.Context> supplier) { }
+
+    public void onSharedInvoke() { }
 
 }
