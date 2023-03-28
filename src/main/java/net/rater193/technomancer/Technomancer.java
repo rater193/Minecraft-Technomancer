@@ -13,6 +13,8 @@ import net.rater193.technomancer.block.ModBlocks;
 import net.rater193.technomancer.item.ModItems;
 import net.rater193.technomancer.painting.ModPaintings;
 import net.rater193.technomancer.villager.ModVillagers;
+import net.rater193.technomancer.world.feature.ModConfiguredFeatures;
+import net.rater193.technomancer.world.feature.ModPlacedFeatures;
 
 // The value here should match an entry in the META-INF/mods.toml file
 // CTRL + F6 LETS YOU SAFELY RENAME FILES, VARIABLES, AND REFERENCES
@@ -34,6 +36,10 @@ public class Technomancer
 
         //Registering paintings
         ModPaintings.register(modEventBus);
+
+        //Registering terrain features
+        ModConfiguredFeatures.register(modEventBus);
+        ModPlacedFeatures.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
