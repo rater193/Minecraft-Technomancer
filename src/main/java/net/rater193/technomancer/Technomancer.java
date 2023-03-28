@@ -11,6 +11,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.rater193.technomancer.block.ModBlocks;
 import net.rater193.technomancer.item.ModItems;
+import net.rater193.technomancer.painting.ModPaintings;
 import net.rater193.technomancer.villager.ModVillagers;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -30,6 +31,9 @@ public class Technomancer
 
         //Registering villagers
         ModVillagers.register(modEventBus);
+
+        //Registering paintings
+        ModPaintings.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
