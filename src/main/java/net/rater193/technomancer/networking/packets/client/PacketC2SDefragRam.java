@@ -7,14 +7,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraftforge.network.NetworkEvent;
 import net.rater193.technomancer.block.ModBlocks;
 import net.rater193.technomancer.networking.ModMessages;
-import net.rater193.technomancer.playerdata.ram.PlayerRam;
+import net.rater193.technomancer.networking.packets.server.PacketS2CSyncRamData;
 import net.rater193.technomancer.playerdata.ram.PlayerRamProvider;
-import net.rater193.technomancer.utility.ModLangs;
 
 import java.util.function.Supplier;
 
@@ -51,6 +48,10 @@ public class PacketC2SDefragRam {
 
                 //Notify the player how much fragmented ram was removed
                 sender.sendSystemMessage(Component.translatable(MESSAGES.MESSAGE_DEFRAG_RAM).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.DARK_AQUA));
+                sender.getCapability(PlayerRamProvider.PLAYER_RAM).ifPresent(ram -> {
+                    //sender.sendSystemMessage(Component.literal("You have the ram!" + ram.getMaxRam()));
+                    ModMessages.sendToPlayer(new PacketS2CSyncRamData(ram.getRam()), sender);
+                });
                 level.playSound(null, sender.getOnPos(), SoundEvents.BUCKET_EMPTY, SoundSource.PLAYERS,
                         0.5f, level.random.nextFloat() * 0.1f + 0.9f);
 
@@ -59,7 +60,8 @@ public class PacketC2SDefragRam {
                 sender.sendSystemMessage(Component.translatable(MESSAGES.MESSAGE_NO_MACHINE_BLOCK_NEAR).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.RED));
                 sender.sendSystemMessage(Component.literal("Checking for ram..."));
                 sender.getCapability(PlayerRamProvider.PLAYER_RAM).ifPresent(ram -> {
-                    sender.sendSystemMessage(Component.literal("You have the ram!" + ram.getMaxRam()));
+                    //sender.sendSystemMessage(Component.literal("You have the ram!" + ram.getMaxRam()));
+                    ModMessages.sendToPlayer(new PacketS2CSyncRamData(ram.getRam()), sender);
                 });
                 //PlayerRam ram = sender.getCapability(PlayerRamProvider.PLAYER_RAM).resolve().get();
                 //sender.sendSystemMessage(Component.literal("ram: " + ram.getRam() + " / " + ram.getMaxRam()));

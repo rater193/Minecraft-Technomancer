@@ -4,6 +4,7 @@ package net.rater193.technomancer.events;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -14,6 +15,7 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,6 +23,8 @@ import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.rater193.technomancer.Technomancer;
 import net.rater193.technomancer.item.ModItems;
+import net.rater193.technomancer.networking.ModMessages;
+import net.rater193.technomancer.networking.packets.server.PacketS2CSyncRamData;
 import net.rater193.technomancer.playerdata.ram.PlayerRam;
 import net.rater193.technomancer.playerdata.ram.PlayerRamProvider;
 import net.rater193.technomancer.villager.ModVillagers;
@@ -64,6 +68,7 @@ public class ModEvents {
                     ram.addRam(1);
                     ram.lastTick = 20;
                     event.player.sendSystemMessage(Component.literal("Added 1 ram: " + ram.getRam()));
+                    ModMessages.sendToPlayer(new PacketS2CSyncRamData(ram.getRam()), (ServerPlayer)event.player);
                 }else{
                     ram.lastTick -= 1;
                 }
@@ -84,5 +89,16 @@ public class ModEvents {
     @SubscribeEvent
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
         event.register(PlayerRam.class);
+    }
+
+    @SubscribeEvent
+    public static void onPlayerJoinWorld(EntityJoinLevelEvent event) {
+        if(!event.getLevel().isClientSide()) {
+            if(event.getEntity() instanceof ServerPlayer player) {
+                player.getCapability(PlayerRamProvider.PLAYER_RAM).ifPresent( ram -> {
+                    //ModMessages.sendToPlayer(ram.getRam(), player);
+                });
+            }
+        }
     }
 }
