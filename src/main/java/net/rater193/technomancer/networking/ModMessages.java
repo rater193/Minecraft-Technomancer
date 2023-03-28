@@ -8,7 +8,9 @@ import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.rater193.technomancer.Technomancer;
 import net.rater193.technomancer.networking.packets.client.PacketC2SDefragRam;
+import net.rater193.technomancer.networking.packets.client.PacketC2STestInheritence;
 import net.rater193.technomancer.networking.packets.client.PacketC2STestMessage;
+import net.rater193.technomancer.networking.packets.client.PacketClient;
 import net.rater193.technomancer.networking.packets.server.PacketS2CSyncRamData;
 
 public class ModMessages {
@@ -16,7 +18,7 @@ public class ModMessages {
     private static SimpleChannel INSTANCE;
 
     private static int PACKET_ID = 0;
-    private static int id() {
+    public static int NewNetID() {
         return PACKET_ID++;
     }
 
@@ -30,19 +32,22 @@ public class ModMessages {
 
         INSTANCE = net;
 
-        net.messageBuilder(PacketC2STestMessage.class, id(), NetworkDirection.PLAY_TO_SERVER)
+        new PacketClient(net, NewNetID());
+        new PacketC2STestInheritence(net, NewNetID());
+
+        net.messageBuilder(PacketC2STestMessage.class, NewNetID(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(PacketC2STestMessage::new)
                 .encoder(PacketC2STestMessage::toBytes)
                 .consumerMainThread(PacketC2STestMessage::handle)
                 .add();
 
-        net.messageBuilder(PacketC2SDefragRam.class, id(), NetworkDirection.PLAY_TO_SERVER)
+        net.messageBuilder(PacketC2SDefragRam.class, NewNetID(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(PacketC2SDefragRam::new)
                 .encoder(PacketC2SDefragRam::toBytes)
                 .consumerMainThread(PacketC2SDefragRam::handle)
                 .add();
 
-        net.messageBuilder(PacketS2CSyncRamData.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+        net.messageBuilder(PacketS2CSyncRamData.class, NewNetID(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(PacketS2CSyncRamData::new)
                 .encoder(PacketS2CSyncRamData::toBytes)
                 .consumerMainThread(PacketS2CSyncRamData::handle)

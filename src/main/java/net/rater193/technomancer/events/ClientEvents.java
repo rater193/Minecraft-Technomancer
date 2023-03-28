@@ -12,6 +12,7 @@ import net.rater193.technomancer.Technomancer;
 import net.rater193.technomancer.client.TechnomancerHudOverlay;
 import net.rater193.technomancer.networking.ModMessages;
 import net.rater193.technomancer.networking.packets.client.PacketC2SDefragRam;
+import net.rater193.technomancer.networking.packets.client.PacketC2STestInheritence;
 import net.rater193.technomancer.networking.packets.client.PacketC2STestMessage;
 import net.rater193.technomancer.utility.KeyBinding;
 
@@ -24,7 +25,8 @@ public class ClientEvents {
         public static void onKeyInput(InputEvent.Key event) {
             if(KeyBinding.DEFRAGMENT_RAM_KEY.consumeClick()) {
                 //Minecraft.getInstance().player.sendSystemMessage(Component.literal("[Client Message] You defragmented <ERROR 404, NOT FOUND> ram!"));
-                ModMessages.sendToServer(new PacketC2SDefragRam());
+                //ModMessages.sendToServer(new PacketC2SDefragRam());
+                ModMessages.sendToServer(new PacketC2STestInheritence());
             }
         }
     }
