@@ -26,6 +26,7 @@ import net.rater193.technomancer.playerdata.ram.PlayerRamProvider;
 import net.rater193.technomancer.villager.ModVillagers;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Mod.EventBusSubscriber(modid = Technomancer.MOD_ID)
 public class ModEvents {
@@ -46,31 +47,18 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
-        if(event.getObject() instanceof Player player) {
-            if(!player.getCapability(PlayerRamProvider.PLAYER_RAM).isPresent()) {
+        if(event.getObject() instanceof Player) {
+            if(!event.getObject().getCapability(PlayerRamProvider.PLAYER_RAM).isPresent()) {
+                System.out.println("ON ATTACH PLAYER RAM");
                 event.addCapability(new ResourceLocation(Technomancer.MOD_ID, "properties"), new PlayerRamProvider());
             }
         }
-    }
-    @SubscribeEvent
-    public static void onPlayerCloned(PlayerEvent.Clone event) {
-        if(event.isWasDeath()) {
-            event.getOriginal().getCapability(PlayerRamProvider.PLAYER_RAM).ifPresent(oldStore -> {
-                event.getOriginal().getCapability(PlayerRamProvider.PLAYER_RAM).ifPresent(newStore -> {
-                    newStore.copyFrom(oldStore);
-                });
-            });
-        }
-    }
-
-    @SubscribeEvent
-    public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
-        event.register(PlayerRam.class);
     }
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if(event.side == LogicalSide.SERVER) {
+
             event.player.getCapability(PlayerRamProvider.PLAYER_RAM).ifPresent(ram -> {
                 if(ram.getRam()<ram.getMaxRam() && ram.lastTick <= 0) {
                     ram.addRam(1);
@@ -81,5 +69,20 @@ public class ModEvents {
                 }
             });
         }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerCloned(PlayerEvent.Clone event) {
+        if(event.isWasDeath()) {
+            event.getOriginal().getCapability(PlayerRamProvider.PLAYER_RAM).ifPresent(oldStore -> {
+                event.getOriginal().getCapability(PlayerRamProvider.PLAYER_RAM).ifPresent(newStore -> {
+                    newStore.copyFrom(oldStore);
+                });
+            });
+        }
+    }
+    @SubscribeEvent
+    public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
+        event.register(PlayerRam.class);
     }
 }

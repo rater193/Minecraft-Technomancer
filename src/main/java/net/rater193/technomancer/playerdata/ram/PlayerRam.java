@@ -13,7 +13,7 @@ public class PlayerRam {
     }
 
     public int getMaxRam() {
-        return MIN_RAM;
+        return MAX_RAM;
     }
 
     public int getMinRam() {

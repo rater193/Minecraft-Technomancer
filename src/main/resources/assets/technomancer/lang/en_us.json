@@ -5,6 +5,12 @@
   "tooltip.pressshiftformoreinfo": "[Press shift for more information]",
 
   "Comment": "========================================================================================================",
+  "Comment": "==                                               GENERAL                                              ==",
+  "Comment": "========================================================================================================",
+  "message.technomancer.defragram": "You have removed <ERROR 404, NOT FOUND> fragmented ram!",
+  "message.technomancer.nomachineblocknear": "You need to be standing near a machine block.",
+
+  "Comment": "========================================================================================================",
   "Comment": "==                                            KEY BINDINGS                                            ==",
   "Comment": "========================================================================================================",
 

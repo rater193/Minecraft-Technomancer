@@ -11,6 +11,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.rater193.technomancer.block.ModBlocks;
 import net.rater193.technomancer.item.ModItems;
+import net.rater193.technomancer.networking.ModMessages;
 import net.rater193.technomancer.painting.ModPaintings;
 import net.rater193.technomancer.villager.ModVillagers;
 import net.rater193.technomancer.world.feature.ModConfiguredFeatures;
@@ -23,6 +24,7 @@ public class Technomancer
 {
     // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "technomancer";
+    public static final String MOD_VERSION = "1.0";
 
     public Technomancer()
     {
@@ -54,6 +56,8 @@ public class Technomancer
         event.enqueueWork(() -> {
             ModVillagers.registerPOIs();
         });
+
+        ModMessages.register();
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
