@@ -10,6 +10,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.rater193.technomancer.block.ModBlocks;
+import net.rater193.technomancer.fluid.ModFluidTypes;
+import net.rater193.technomancer.fluid.ModFluids;
 import net.rater193.technomancer.item.ModItems;
 import net.rater193.technomancer.networking.ModMessages;
 import net.rater193.technomancer.painting.ModPaintings;
@@ -29,9 +31,13 @@ public class Technomancer
     public Technomancer()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        // Reggistering our items/blocks
+        // Registering our items/blocks
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
+        // Registering fluids
+        ModFluids.register(modEventBus);
+        ModFluidTypes.register(modEventBus);
 
         //Registering villagers
         ModVillagers.register(modEventBus);
@@ -69,6 +75,8 @@ public class Technomancer
             // Some client setup code
             //test
             //ItemBlockRenderTypes.setRenderLayer(ModBlocks.BLOCKCROPCRYSTALSHARD.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_LQCRYSTAL.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_LQCRYSTAL.get(), RenderType.translucent());
         }
     }
 }

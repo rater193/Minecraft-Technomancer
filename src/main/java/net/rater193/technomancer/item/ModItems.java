@@ -1,15 +1,14 @@
 package net.rater193.technomancer.item;
 
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.ItemNameBlockItem;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.rater193.technomancer.Technomancer;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rater193.technomancer.block.ModBlocks;
+import net.rater193.technomancer.fluid.ModFluids;
 import net.rater193.technomancer.item.custom.ItemThermalPasteTube;
 import net.rater193.technomancer.item.custom.ItemTooltipHelper;
 
@@ -24,8 +23,10 @@ public class ModItems {
     public static final RegistryObject<Item> THERMALPASTE_TUBE = registerItem("thermalpaste_tube", 16);
     public static final RegistryObject<Item> CROP_CRYSTAL_SHARD_SEEDS = ITEMS.register("crop_crystal_shard_seeds",
             () -> new ItemNameBlockItem(ModBlocks.BLOCKCROPCRYSTALSHARD.get(),
-                    new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB))
-            );
+                    new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB)));
+    public static final RegistryObject<Item> LQCRYSTAL_BUCKET = ITEMS.register("lqcrystal_bucket",
+            () -> new BucketItem(ModFluids.SOURCE_LQCRYSTAL,
+                    new Item.Properties().tab(ModCreativeModeTab.CREATIVE_MODE_TAB).craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final RegistryObject<Item> CROP_CRYSTAL_SHARD = ITEMS.register("crop_crystal_shard",
             () -> new Item(
                     new Item.Properties()

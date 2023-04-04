@@ -7,6 +7,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -16,6 +17,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rater193.technomancer.Technomancer;
 import net.rater193.technomancer.block.custom.BlockClickLight;
 import net.rater193.technomancer.block.custom.BlockCropCrystalShard;
+import net.rater193.technomancer.fluid.ModFluids;
 import net.rater193.technomancer.item.ModCreativeModeTab;
 import net.rater193.technomancer.item.ModItems;
 import net.rater193.technomancer.item.custom.BlockItemTooltipHelper;
@@ -47,6 +49,9 @@ public class ModBlocks {
             ),
             ModCreativeModeTab.CREATIVE_MODE_TAB
     );
+
+    public static final RegistryObject<LiquidBlock> LQCYSTAL_BLOCK = BLOCKS.register("lqcrystal_block",
+            () -> new LiquidBlock(ModFluids.SOURCE_LQCRYSTAL, BlockBehaviour.Properties.copy(Blocks.WATER)));
     public static final RegistryObject<Block> BLOCKCROPCRYSTALSHARD = BLOCKS.register("crop_crystal_shard",
             () -> new BlockCropCrystalShard(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
 
