@@ -21,7 +21,7 @@ public class TechnomancerHudOverlay {
         RenderSystem.setShaderTexture(0, ModResourceLocations.RAM_EMPTY);
         for(int i = 0; i < 10; i++) {
             GuiComponent.blit(poseStack,
-                    x-94+(i*8), y-54, // Position
+                    x-180+(i*8), y-20, // Position
                     0, 0, // offset
                     8, 16, // size
                     8, 16); // position
@@ -29,14 +29,16 @@ public class TechnomancerHudOverlay {
 
         RenderSystem.setShaderTexture(0, ModResourceLocations.RAM_FULL);
 
-        float mult = 0.5f;
-        for(int i = 0; i < 5; i++) {
-            if((float)i<=10*mult) {
+        float cap = (((float)ClientData.RAM/(float)ClientData.MAX_RAM)*10f);
+        for(int i = 0; i < 10; i++) {
+            if((float)i<=(int)(cap+1)) {
                 GuiComponent.blit(poseStack,
-                        x - 94 + (i * 8), y - 54, // Position
+                        x - 180 + (i * 8), y - 20, // Position
                         0, 0, // tex offset
-                        4, 16, // tex size
+                        Math.min(8,(int)((cap-i)*8)), 16, // tex size
                         8, 16); // screen size
+            }else{
+                break;
             }
         }
         //RenderSystem.getF

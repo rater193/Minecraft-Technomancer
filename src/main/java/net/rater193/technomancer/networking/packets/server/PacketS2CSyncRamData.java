@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.simple.SimpleChannel;
+import net.rater193.technomancer.client.ClientData;
 import net.rater193.technomancer.client.ClientRamData;
 import net.rater193.technomancer.networking.packets.shared.PacketShared;
 
@@ -28,6 +29,7 @@ public class PacketS2CSyncRamData {
         RAM = buf.readInt();
         //MAX_RAM = buf.readInt();
         System.out.println("[rater193] TEST: READING RAM BUFFER: " + RAM);
+        ClientData.RAM = RAM;
     }
 
     public static void toBytes(PacketS2CSyncRamData t, FriendlyByteBuf buf) {
