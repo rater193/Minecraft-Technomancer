@@ -12,12 +12,8 @@ import net.rater193.technomancer.networking.packets.shared.PacketShared;
 
 import java.util.function.Supplier;
 
-public class PacketS2CSyncRamData extends PacketServer {
-    private int RAM;
-
-    public PacketS2CSyncRamData(SimpleChannel channel, int messageID) {
-        super(channel, messageID);
-    }
+public class PacketS2CSyncRamData {
+    public int RAM;
 
     public PacketS2CSyncRamData() {
     }
@@ -31,48 +27,18 @@ public class PacketS2CSyncRamData extends PacketServer {
         super();
         RAM = buf.readInt();
         //MAX_RAM = buf.readInt();
+        System.out.println("[rater193] TEST: READING RAM BUFFER: " + RAM);
     }
 
+    public static void toBytes(PacketS2CSyncRamData t, FriendlyByteBuf buf) {
+        buf.writeInt(t.RAM);
+        System.out.println("[rater193] TEST: WRITING RAM TO BUFFER");
+    }
 
-    public static boolean rawHandle(PacketS2CSyncRamData t, Supplier<NetworkEvent.Context> supplier) {
+    public static boolean handle(PacketS2CSyncRamData t, Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
-
-        //Method execution to help the API work better
-        //Executed from the sender
-        ServerPlayer sender1 = context.getSender();
-        ServerLevel level1 = sender1.getLevel();
-
-        t.onSharedSend();
-        t.onSharedSend(sender1, level1, context, supplier);
-
         context.enqueueWork(() ->  {
-            System.out.println("[rater193] RAM MESSAGE RECEIVED: " + t.getClass().getName());
-
-            ServerPlayer sender2 = context.getSender();
-            ServerLevel level2 = sender2.getLevel();
-            //Method execution to help the API work better
-            //Executed on the target
-            t.onSharedInvoke();
-            t.onSharedInvoke(sender2, level2, supplier);
         });
         return true;
-    }
-
-    public static void rawToBytes(PacketS2CSyncRamData t, FriendlyByteBuf buf) {
-        buf.writeInt(t.RAM);
-    }
-
-    @Override
-    public <T extends PacketShared> void toBytes(T t, FriendlyByteBuf buf) {
-        super.toBytes(t, buf);
-        buf.writeInt(RAM);
-    }
-
-    @Override
-    public void onClientReceive() {
-        super.onClientReceive();
-        System.out.println("[rater193] RAM MESSAGE RECEIVED");
-        Minecraft.getInstance().player.sendSystemMessage(Component.literal("RAM UPDATED"));
-        ClientRamData.set(RAM);
     }
 }

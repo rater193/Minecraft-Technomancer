@@ -28,8 +28,8 @@ public class PacketServer extends PacketShared {
         try {
             channel.messageBuilder(packetClass, messageID, NetworkDirection.PLAY_TO_CLIENT)
                     .decoder(buf -> createNewInstance(packetClass))
-                    .encoder(this::toBytes)
-                    .consumerMainThread(this::handle)
+                    .encoder(T::toBytes)
+                    .consumerMainThread(T::handle)
                     .add();
         } catch (Exception e) {
             // handle exceptions

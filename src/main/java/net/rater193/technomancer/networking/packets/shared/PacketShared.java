@@ -30,7 +30,7 @@ public class PacketShared {
      * @return      void
      * @see         FriendlyByteBuf
      */
-    public <T extends PacketShared> void toBytes(T t, FriendlyByteBuf buf) { }
+    public static <T extends PacketShared> void toBytes(T t, FriendlyByteBuf buf) { }
 
     /**
      * Handling the supplier, in order to send messages to the server.
@@ -41,7 +41,7 @@ public class PacketShared {
      * @see         Supplier
      */
 
-    public <T extends PacketShared> boolean handle(T t, Supplier<NetworkEvent.Context> supplier) {
+    public static <T extends PacketShared> boolean handle(T t, Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
 
         //Method execution to help the API work better
@@ -53,7 +53,7 @@ public class PacketShared {
         t.onSharedSend(sender1, level1, context, supplier);
 
         context.enqueueWork(() ->  {
-            System.out.println("[rater193] RAM MESSAGE RECEIVED: " + t.getClass().getName());
+            System.out.println("[rater193] SHARED MESSAGE: " + t.getClass().getName());
 
             ServerPlayer sender2 = context.getSender();
             ServerLevel level2 = sender2.getLevel();

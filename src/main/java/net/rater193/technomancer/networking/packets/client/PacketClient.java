@@ -28,8 +28,8 @@ public class PacketClient extends PacketShared {
             System.out.println("[rater193] CLASS: " + this.getClass().getName() + "\nCOMING FROM: " + packetClass.getName());
             channel.messageBuilder(packetClass, messageID, NetworkDirection.PLAY_TO_SERVER)
                     .decoder(buf -> createNewInstance(packetClass))
-                    .encoder(this::toBytes)
-                    .consumerMainThread(this::handle)
+                    .encoder(T::toBytes)
+                    .consumerMainThread(T::handle)
                     .add();
         } catch (Exception e) {
             // handle exceptions

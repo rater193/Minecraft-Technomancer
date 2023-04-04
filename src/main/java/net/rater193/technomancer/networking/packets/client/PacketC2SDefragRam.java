@@ -64,7 +64,9 @@ public class PacketC2SDefragRam extends PacketClient {
             sender.getCapability(PlayerRamProvider.PLAYER_RAM).ifPresent(ram -> {
                 //sender.sendSystemMessage(Component.literal("You have the ram!" + ram.getMaxRam()));
                 ModMessages.sendToPlayer(new PacketS2CSyncRamData(ram.getRam()), sender);
+                sender.sendSystemMessage(Component.literal("Sending ram to client: " + ram.getRam()));
             });
+            sender.sendSystemMessage(Component.literal("Done checking for ram."));
             //PlayerRam ram = sender.getCapability(PlayerRamProvider.PLAYER_RAM).resolve().get();
             //sender.sendSystemMessage(Component.literal("ram: " + ram.getRam() + " / " + ram.getMaxRam()));
         }
