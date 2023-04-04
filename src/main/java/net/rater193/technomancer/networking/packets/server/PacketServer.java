@@ -55,6 +55,7 @@ public class PacketServer extends PacketShared {
 
     @Override
     public void onSharedInvoke() {
+        System.out.println("PacketServerMessage");
         super.onSharedInvoke();
     }
 

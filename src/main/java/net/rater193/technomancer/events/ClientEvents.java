@@ -26,7 +26,7 @@ public class ClientEvents {
             if(KeyBinding.DEFRAGMENT_RAM_KEY.consumeClick()) {
                 //Minecraft.getInstance().player.sendSystemMessage(Component.literal("[Client Message] You defragmented <ERROR 404, NOT FOUND> ram!"));
                 //ModMessages.sendToServer(new PacketC2SDefragRam());
-                ModMessages.sendToServer(new PacketC2STestInheritence());
+                ModMessages.sendToServer(new PacketC2SDefragRam());
             }
         }
     }

@@ -67,7 +67,7 @@ public class ModEvents {
                 if(ram.getRam()<ram.getMaxRam() && ram.lastTick <= 0) {
                     ram.addRam(1);
                     ram.lastTick = 20;
-                    event.player.sendSystemMessage(Component.literal("Added 1 ram: " + ram.getRam()));
+                    //event.player.sendSystemMessage(Component.literal("Added 1 ram: " + ram.getRam()));
                     ModMessages.sendToPlayer(new PacketS2CSyncRamData(ram.getRam()), (ServerPlayer)event.player);
                 }else{
                     ram.lastTick -= 1;

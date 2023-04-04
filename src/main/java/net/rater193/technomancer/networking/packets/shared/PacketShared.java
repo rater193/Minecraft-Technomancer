@@ -1,5 +1,6 @@
 package net.rater193.technomancer.networking.packets.shared;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -48,17 +49,18 @@ public class PacketShared {
         ServerPlayer sender1 = context.getSender();
         ServerLevel level1 = sender1.getLevel();
 
-        onSharedSend();
-        onSharedSend(sender1, level1, context, supplier);
+        t.onSharedSend();
+        t.onSharedSend(sender1, level1, context, supplier);
 
         context.enqueueWork(() ->  {
+            System.out.println("[rater193] RAM MESSAGE RECEIVED: " + t.getClass().getName());
 
             ServerPlayer sender2 = context.getSender();
             ServerLevel level2 = sender2.getLevel();
             //Method execution to help the API work better
             //Executed on the target
-            onSharedInvoke(sender2, level2, supplier);
-            onSharedInvoke();
+            t.onSharedInvoke();
+            t.onSharedInvoke(sender2, level2, supplier);
         });
         return true;
     }

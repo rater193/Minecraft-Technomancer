@@ -2,6 +2,8 @@ package net.rater193.technomancer.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
@@ -37,5 +39,9 @@ public class TechnomancerHudOverlay {
                         8, 16); // screen size
             }
         }
+        //RenderSystem.getF
+        //GuiComponent.drawCenteredString(poseStack, GuiComponent.
+        //        );
+        //
     };
 }

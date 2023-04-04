@@ -25,6 +25,7 @@ public class PacketClient extends PacketShared {
 
     private <T extends PacketClient> void registerPacket(SimpleChannel channel, int messageID, Class<T> packetClass) {
         try {
+            System.out.println("[rater193] CLASS: " + this.getClass().getName() + "\nCOMING FROM: " + packetClass.getName());
             channel.messageBuilder(packetClass, messageID, NetworkDirection.PLAY_TO_SERVER)
                     .decoder(buf -> createNewInstance(packetClass))
                     .encoder(this::toBytes)
@@ -57,6 +58,7 @@ public class PacketClient extends PacketShared {
         super.onSharedInvoke(sender, level, supplier);
         onServerReceive(sender, level, supplier);
     }
+
 
     public void onClientSend() {
 

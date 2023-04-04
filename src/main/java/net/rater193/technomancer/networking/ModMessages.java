@@ -38,14 +38,14 @@ public class ModMessages {
         new PacketC2STestMessage(net, NewNetID());
 
         //Server messages
-        new PacketS2CSyncRamData(net, NewNetID());
+        //new PacketS2CSyncRamData(net, NewNetID());
 
-        /*
+
         net.messageBuilder(PacketS2CSyncRamData.class, NewNetID(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(PacketS2CSyncRamData::new)
-                .encoder(PacketS2CSyncRamData::toBytes)
-                .consumerMainThread(PacketS2CSyncRamData::handle)
-                .add();*/
+                .encoder(PacketS2CSyncRamData::rawToBytes)
+                .consumerMainThread(PacketS2CSyncRamData::rawHandle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message) {
