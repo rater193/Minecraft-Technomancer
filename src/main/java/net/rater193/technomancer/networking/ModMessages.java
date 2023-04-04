@@ -8,9 +8,6 @@ import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.rater193.technomancer.Technomancer;
 import net.rater193.technomancer.networking.packets.client.PacketC2SDefragRam;
-import net.rater193.technomancer.networking.packets.client.PacketC2STestInheritence;
-import net.rater193.technomancer.networking.packets.client.PacketC2STestMessage;
-import net.rater193.technomancer.networking.packets.client.PacketClient;
 import net.rater193.technomancer.networking.packets.server.PacketS2CSyncRamData;
 
 public class ModMessages {
@@ -33,9 +30,11 @@ public class ModMessages {
         INSTANCE = net;
 
         //Client messages
-        new PacketC2STestInheritence(net, NewNetID());
-        new PacketC2SDefragRam(net, NewNetID());
-        new PacketC2STestMessage(net, NewNetID());
+        net.messageBuilder(PacketC2SDefragRam.class, NewNetID(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(PacketC2SDefragRam::new)
+                .encoder(PacketC2SDefragRam::toBytes)
+                .consumerMainThread(PacketC2SDefragRam::handle)
+                .add();
 
         //Server messages
 

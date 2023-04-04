@@ -1,7 +1,5 @@
 package net.rater193.technomancer.events;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
@@ -12,8 +10,6 @@ import net.rater193.technomancer.Technomancer;
 import net.rater193.technomancer.client.TechnomancerHudOverlay;
 import net.rater193.technomancer.networking.ModMessages;
 import net.rater193.technomancer.networking.packets.client.PacketC2SDefragRam;
-import net.rater193.technomancer.networking.packets.client.PacketC2STestInheritence;
-import net.rater193.technomancer.networking.packets.client.PacketC2STestMessage;
 import net.rater193.technomancer.utility.KeyBinding;
 
 public class ClientEvents {

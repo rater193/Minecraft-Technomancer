@@ -1,5 +1,6 @@
 {
   "parent": "block/crop",
+  "render_type": "cutout",
   "textures": {
     "crop": "technomancer:block/crop_crystal_shard_1"
   }
