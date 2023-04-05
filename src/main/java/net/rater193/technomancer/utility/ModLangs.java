@@ -12,6 +12,10 @@ public class ModLangs {
         public static final String ToolTipKey = "tooltip.pressshiftformoreinfo";
     }
 
+    public static class BLOCKENTITIES {
+        public static final String GemInfusionStation = "blockentity.display.geminfusionstation";
+    }
+
     public static class MESSAGES {
         public static final String MESSAGE_DEFRAG_RAM = "message.technomancer.defragram";
         public static final String MESSAGE_NO_MACHINE_BLOCK_NEAR = "message.technomancer.nomachineblocknear";

@@ -17,6 +17,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rater193.technomancer.Technomancer;
 import net.rater193.technomancer.block.custom.BlockClickLight;
 import net.rater193.technomancer.block.custom.BlockCropCrystalShard;
+import net.rater193.technomancer.block.custom.BlockGemInfusionStation;
 import net.rater193.technomancer.fluid.ModFluids;
 import net.rater193.technomancer.item.ModCreativeModeTab;
 import net.rater193.technomancer.item.ModItems;
@@ -38,6 +39,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> THERMAL_PASTE_BLOCK = registerBasicBlock("thermalpaste_block", Material.CLAY);
     public static final RegistryObject<Block> MACHINE_BLOCK = registerBasicBlock("machineblock", Material.HEAVY_METAL);
     public static final RegistryObject<Block> POWER_GENERATOR_1 = registerBasicBlock("powergenerator_1", Material.HEAVY_METAL);
+    public static final RegistryObject<Block> GEM_INFUSION_STATION = BLOCKS.register("gem_infusion_station",
+            () -> new BlockGemInfusionStation("gem_infusion_station", BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
     public static final RegistryObject<Block> CLICKLIGHT_LIGHT = registerBlock("clicklight_white",
             () -> new BlockClickLight(
                     BlockBehaviour.Properties.of(Material.CLAY)
@@ -81,7 +84,7 @@ public class ModBlocks {
         );
     }
 
-    private static <T extends Block>RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
+    public static <T extends Block>RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
         return ModItems.ITEMS.register(name, () -> new BlockItemTooltipHelper(block.get(), new Item.Properties().tab(tab)));
     }
 

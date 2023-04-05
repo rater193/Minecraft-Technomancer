@@ -1,5 +1,6 @@
 package net.rater193.technomancer;
 
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.common.MinecraftForge;
@@ -9,12 +10,15 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.rater193.technomancer.block.ModBlockEntities;
 import net.rater193.technomancer.block.ModBlocks;
 import net.rater193.technomancer.fluid.ModFluidTypes;
 import net.rater193.technomancer.fluid.ModFluids;
 import net.rater193.technomancer.item.ModItems;
 import net.rater193.technomancer.networking.ModMessages;
 import net.rater193.technomancer.painting.ModPaintings;
+import net.rater193.technomancer.screen.ModMenuTypes;
+import net.rater193.technomancer.screen.ScreenGemInfusionStation;
 import net.rater193.technomancer.villager.ModVillagers;
 import net.rater193.technomancer.world.feature.ModConfiguredFeatures;
 import net.rater193.technomancer.world.feature.ModPlacedFeatures;
@@ -34,6 +38,7 @@ public class Technomancer
         // Registering our items/blocks
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
         // Registering fluids
         ModFluids.register(modEventBus);
@@ -48,6 +53,9 @@ public class Technomancer
         //Registering terrain features
         ModConfiguredFeatures.register(modEventBus);
         ModPlacedFeatures.register(modEventBus);
+
+        //Menus
+        ModMenuTypes.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -77,6 +85,8 @@ public class Technomancer
             //ItemBlockRenderTypes.setRenderLayer(ModBlocks.BLOCKCROPCRYSTALSHARD.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_LQCRYSTAL.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_LQCRYSTAL.get(), RenderType.translucent());
+
+            MenuScreens.register(ModMenuTypes.MENU_GEM_INFUSION_STATION.get(), ScreenGemInfusionStation::new);
         }
     }
 }

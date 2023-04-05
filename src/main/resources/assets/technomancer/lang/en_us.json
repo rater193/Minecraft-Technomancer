@@ -9,6 +9,7 @@
   "Comment": "========================================================================================================",
   "message.technomancer.defragram": "You have removed <ERROR 404, NOT FOUND> fragmented ram!",
   "message.technomancer.nomachineblocknear": "You need to be standing near a machine block.",
+  "blockentity.display.geminfusionstation": "Gem Infusion Station V1",
 
   "Comment": "========================================================================================================",
   "Comment": "==                                            KEY BINDINGS                                            ==",
