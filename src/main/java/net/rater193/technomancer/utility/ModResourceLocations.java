@@ -8,4 +8,6 @@ public class ModResourceLocations {
             "textures/hud/ram_empty.png");
     public static final ResourceLocation RAM_FULL = new ResourceLocation(Technomancer.MOD_ID,
             "textures/hud/ram_full.png");
+    public static final ResourceLocation RAM_FRAGMENTED = new ResourceLocation(Technomancer.MOD_ID,
+            "textures/hud/ram_fragmented.png");
 }

@@ -4,6 +4,7 @@ package net.rater193.technomancer.events;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerProfession;
@@ -22,6 +23,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.rater193.technomancer.Technomancer;
+import net.rater193.technomancer.block.ModBlocks;
 import net.rater193.technomancer.item.ModItems;
 import net.rater193.technomancer.networking.ModMessages;
 import net.rater193.technomancer.networking.packets.server.PacketS2CSyncRamData;
@@ -29,6 +31,7 @@ import net.rater193.technomancer.playerdata.ram.PlayerRam;
 import net.rater193.technomancer.playerdata.ram.PlayerRamProvider;
 import net.rater193.technomancer.villager.ModVillagers;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -59,6 +62,11 @@ public class ModEvents {
         }
     }
 
+    public static boolean playerHasMachineBlockAroundThem(ServerPlayer player, ServerLevel level, float size) {
+        return level.getBlockStates(player.getBoundingBox().inflate(size))
+                .filter( state -> state.is(ModBlocks.MACHINE_BLOCK.get())).toArray().length > 0;
+    }
+
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if(event.side == LogicalSide.SERVER) {
@@ -66,13 +74,30 @@ public class ModEvents {
             event.player.getCapability(PlayerRamProvider.PLAYER_RAM).ifPresent(ram -> {
                 if(ram.getRam()<ram.getMaxRam() && ram.lastTick <= 0) {
                     ram.addRam(1);
-                    ram.lastTick = 20;
+                    ram.lastTick = 4;
                     //event.player.sendSystemMessage(Component.literal("Added 1 ram: " + ram.getRam()));
-                    ModMessages.sendToPlayer(new PacketS2CSyncRamData(ram.getRam()), (ServerPlayer)event.player);
+                    ModMessages.sendToPlayer(new PacketS2CSyncRamData(ram), (ServerPlayer)event.player);
+
                 }else{
                     ram.lastTick -= 1;
                 }
+
+                //Ram defrag check tick
+                if(ram.getFragmentedRam() > 0 && ram.lastDefragTick <= 0) {
+                    if(playerHasMachineBlockAroundThem((ServerPlayer)event.player, ((ServerPlayer) event.player).getLevel(), 2f)) {
+                        ram.removeFragmentedRam(1);
+                        ModMessages.sendToPlayer(new PacketS2CSyncRamData(ram), (ServerPlayer)event.player);
+                    }
+                    ram.lastDefragTick = 100;
+                }else{
+                    ram.lastDefragTick -= 1;
+                }
             });
+
+            Iterator<ItemStack> iterator = event.player.getHandSlots().iterator();
+            if(iterator.hasNext()) {
+                ItemStack stack = iterator.next();
+            }
         }
     }
 

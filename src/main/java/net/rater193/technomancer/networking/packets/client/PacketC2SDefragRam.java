@@ -60,24 +60,29 @@ public class PacketC2SDefragRam {
                 //Then we want to remove 20 fragmented ram from the player
 
                 //Notify the player how much fragmented ram was removed
-                sender.sendSystemMessage(Component.translatable(MESSAGES.MESSAGE_DEFRAG_RAM).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.DARK_AQUA));
                 sender.getCapability(PlayerRamProvider.PLAYER_RAM).ifPresent(ram -> {
                     //sender.sendSystemMessage(Component.literal("You have the ram!" + ram.getMaxRam()));
-                    ModMessages.sendToPlayer(new PacketS2CSyncRamData(ram.getRam()), sender);
+                    sender.sendSystemMessage(Component.literal("You have " + ram.getFragmentedRam() + " fragmented ram").withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.DARK_AQUA));
+                    //ram.removeFragmentedRam(ram.getFragmentedRam());
+                    //ModMessages.sendToPlayer(new PacketS2CSyncRamData(ram), sender);
                 });
                 level.playSound(null, sender.getOnPos(), SoundEvents.BUCKET_EMPTY, SoundSource.PLAYERS,
                         0.5f, level.random.nextFloat() * 0.1f + 0.9f);
 
             }else{
                 //Notify the player that there is no water near
-                sender.sendSystemMessage(Component.translatable(MESSAGES.MESSAGE_NO_MACHINE_BLOCK_NEAR).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.RED));
-                sender.sendSystemMessage(Component.literal("Checking for ram..."));
+                //sender.sendSystemMessage(Component.translatable(MESSAGES.MESSAGE_NO_MACHINE_BLOCK_NEAR).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.RED));
                 sender.getCapability(PlayerRamProvider.PLAYER_RAM).ifPresent(ram -> {
                     //sender.sendSystemMessage(Component.literal("You have the ram!" + ram.getMaxRam()));
-                    ModMessages.sendToPlayer(new PacketS2CSyncRamData(ram.getRam()), sender);
-                    sender.sendSystemMessage(Component.literal("Sending ram to client: " + ram.getRam()));
+                    if(ram.getRam()-25-5 >= ram.getFragmentedRam()) {
+                        ram.addFragmentedRam(5);
+                        ram.removeRam(25);
+                        ModMessages.sendToPlayer(new PacketS2CSyncRamData(ram), sender);
+                        sender.sendSystemMessage(Component.literal("You ran some code for 25(+5) ram"));
+                    }else{
+                        sender.sendSystemMessage(Component.literal("You do not have enough ram to run this code."));
+                    }
                 });
-                sender.sendSystemMessage(Component.literal("Done checking for ram."));
                 //PlayerRam ram = sender.getCapability(PlayerRamProvider.PLAYER_RAM).resolve().get();
                 //sender.sendSystemMessage(Component.literal("ram: " + ram.getRam() + " / " + ram.getMaxRam()));
             }
