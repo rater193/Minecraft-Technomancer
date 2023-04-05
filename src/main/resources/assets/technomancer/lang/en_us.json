@@ -36,6 +36,9 @@
   "block.technomancer.thermalpaste_ore": "Thermal Paste Ore",
   "tooltip.block.thermalpaste_ore": "This block drops between 1, and 4 thermal paste. Found anywhere in the overworld, in stone patches.",
 
+  "block.technomancer.powergenerator_1": "LV1 Power Generator",
+  "tooltip.block.powergenerator_1": "This is for early power generation. This generates 25 RF/t for anything burnable",
+
   "block.technomancer.thermalpaste_deepslate_ore": "Deepslate Thermal Paste Ore",
   "tooltip.block.thermalpaste_deepslate_ore": "This block drops between 1, and 4 thermal paste. Found anywhere in the overworld, in deepslate patches.",
 

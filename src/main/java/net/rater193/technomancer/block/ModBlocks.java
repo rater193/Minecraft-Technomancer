@@ -37,6 +37,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> THERMAL_PASTE_RAW_BLOCK = registerBasicBlock("thermalpaste_raw_block", Material.CLAY);
     public static final RegistryObject<Block> THERMAL_PASTE_BLOCK = registerBasicBlock("thermalpaste_block", Material.CLAY);
     public static final RegistryObject<Block> MACHINE_BLOCK = registerBasicBlock("machineblock", Material.HEAVY_METAL);
+    public static final RegistryObject<Block> POWER_GENERATOR_1 = registerBasicBlock("powergenerator_1", Material.HEAVY_METAL);
     public static final RegistryObject<Block> CLICKLIGHT_LIGHT = registerBlock("clicklight_white",
             () -> new BlockClickLight(
                     BlockBehaviour.Properties.of(Material.CLAY)

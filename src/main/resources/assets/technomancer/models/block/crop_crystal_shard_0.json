@@ -1,7 +1,7 @@
 {
-  "parent": "minecraft:block/crop",
+  "parent": "minecraft:block/tinted_cross",
   "render_type": "cutout",
   "textures": {
-    "crop": "technomancer:block/crop_crystal_shard_0"
+    "cross": "technomancer:block/crop_crystal_shard_0"
   }
 }
