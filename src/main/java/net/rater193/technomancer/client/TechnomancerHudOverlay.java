@@ -62,9 +62,13 @@ public class TechnomancerHudOverlay {
         Minecraft.getInstance().font.draw(poseStack, displayText, x - 180 + 1, y - 20 - 8 + 1, 0);
         //Text
         Minecraft.getInstance().font.draw(poseStack, displayText, x - 180, y - 20 - 8, 0xffffffff);
-        //RenderSystem.getF
-        //GuiComponent.drawCenteredString(poseStack, GuiComponent.
-        //        );
-        //
+
+        if(ClientData.RAM_FRAGMENTED>0) {
+            displayText = "(" + ClientData.RAM_FRAGMENTED + ")";
+            //Shadow
+            Minecraft.getInstance().font.draw(poseStack, displayText, x - 180 + 1, y - 20 - 8 - 8 + 1, 0);
+            //Text
+            Minecraft.getInstance().font.draw(poseStack, displayText, x - 180, y - 20 - 8 - 8, 0xff994444);
+        }
     };
 }
