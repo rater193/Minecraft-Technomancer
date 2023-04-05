@@ -41,6 +41,10 @@ public class MenuGemInfusionStation extends AbstractContainerMenu {
         });
 
     }
+
+    public ContainerData getData() {
+        return data;
+    };
     protected MenuGemInfusionStation(@Nullable MenuType<?> menuType, int p_38852_) {
         super(menuType, p_38852_);
     }

@@ -2,6 +2,7 @@ package net.rater193.technomancer.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -31,12 +32,16 @@ public class ScreenGemInfusionStation extends AbstractContainerScreen<MenuGemInf
         this.blit(stack, x, y, 0, 0, imageWidth, imageHeight);
 
         renderProgressArrow(stack, x, y);
+        Minecraft.getInstance().font.draw(stack,
+                "P: " + menu.getData().get(0)
+                + ", 1: " + menu.getData().get(1)
+                , x, y+32, 8);
     }
 
     private void renderProgressArrow(PoseStack stack, int x, int y) {
-        if(menu.isCrafting()) {
+        //if(menu.isCrafting()) {
             blit(stack, x + 105, y + 33, 176, 0, 8, menu.getScaledProgress());
-        }
+        //}
     }
 
     @Override

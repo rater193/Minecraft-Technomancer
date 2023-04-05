@@ -54,9 +54,9 @@ public class BlockEntityGemInfusionStation extends BlockEntity implements MenuPr
                 return switch(index) {
                     case 0 -> BlockEntityGemInfusionStation.this.progress;
                     case 1 -> BlockEntityGemInfusionStation.this.maxProgress;
-                    case 3 -> BlockEntityGemInfusionStation.this.storedFluid;
-                    case 4 -> BlockEntityGemInfusionStation.this.maxFluid;
-                    default -> 0;
+                    case 2 -> BlockEntityGemInfusionStation.this.storedFluid;
+                    case 3 -> BlockEntityGemInfusionStation.this.maxFluid;
+                    default -> -1;
                 };
             }
 
@@ -143,7 +143,7 @@ public class BlockEntityGemInfusionStation extends BlockEntity implements MenuPr
         if(hasRecipe(entity)) {
             entity.progress++;
             entity.storedFluid -= 1;
-
+            //System.out.println("entity.progress: " + entity.progress + ", fluid: " + entity.storedFluid);
             if(entity.progress >= entity.maxProgress) {
                 entity.progress = 0;
                 craftItem(entity);

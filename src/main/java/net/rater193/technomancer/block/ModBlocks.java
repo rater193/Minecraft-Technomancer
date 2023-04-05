@@ -40,7 +40,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> MACHINE_BLOCK = registerBasicBlock("machineblock", Material.HEAVY_METAL);
     public static final RegistryObject<Block> POWER_GENERATOR_1 = registerBasicBlock("powergenerator_1", Material.HEAVY_METAL);
     public static final RegistryObject<Block> GEM_INFUSION_STATION = BLOCKS.register("gem_infusion_station",
-            () -> new BlockGemInfusionStation("gem_infusion_station", BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+            () -> new BlockGemInfusionStation("gem_infusion_station",
+                    BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+            ));
     public static final RegistryObject<Block> CLICKLIGHT_LIGHT = registerBlock("clicklight_white",
             () -> new BlockClickLight(
                     BlockBehaviour.Properties.of(Material.CLAY)

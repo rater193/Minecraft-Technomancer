@@ -85,6 +85,7 @@ public class Technomancer
             //ItemBlockRenderTypes.setRenderLayer(ModBlocks.BLOCKCROPCRYSTALSHARD.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_LQCRYSTAL.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_LQCRYSTAL.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.GEM_INFUSION_STATION.get(), RenderType.cutout());
 
             MenuScreens.register(ModMenuTypes.MENU_GEM_INFUSION_STATION.get(), ScreenGemInfusionStation::new);
         }
